@@ -1,12 +1,4 @@
-﻿window.addEventListener('contextmenu', e => e.preventDefault()); 
-
-window.addEventListener('keydown', e => {
-    if (e.key === 'Tab') {
-        e.preventDefault();
-    }
-});
-
-function naiveEmailCheck(email) {
+﻿function naiveEmailCheck(email) {
     return /@/.test(email);
 }
 
