@@ -18,7 +18,10 @@ body {
 label {
     display: block;
     margin: .5rem 0;
-    color: #b3b3b3;
+    color: #000000;
+}
+h1 {
+    color: #000000;
 }
 
 input, textarea {
@@ -32,8 +35,8 @@ input, textarea {
 .send-button {
     display: inline-block;
     padding: .75rem 1rem;
-    background: #dcdcdc;
-    color: #f0f0f0;
+    background: #0077cc;
+    color: #ffffff;
     border-radius: 4px;
     cursor: pointer;
 }
