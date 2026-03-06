@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿﻿﻿@{
     ViewData["Title"] = "Contact";
 }
 
@@ -6,30 +6,30 @@
 
 <form id="contactForm" asp-action="Index" method="post" novalidate>
     @Html.AntiForgeryToken()
-    <div class="hp">
+    <div class="hp" aria-hidden="true" tabindex="-1">
         <label for="website">Laat dit veld leeg</label>
-        <input type="text" id="website" name="website" value="" />
+        <input type="text" id="website" name="website" value="" tabindex="-1" />
     </div>
     <div>
         <label for="Name">Naam</label>
-        <input id="Name" name="Name" placeholder="Naam"/>
-        <div id="nameErr" class="error"></div>
+        <input id="Name" name="Name" placeholder="Naam" aria-describedby="nameErr"/>
+        <div id="nameErr" class="error" role="alert"></div>
     </div>
     <div>
         <label for="Email">E-mail</label>
-        <input id="Email" name="Email" placeholder="naam@domein.nl" />
-        <div id="emailErr" class="error"></div>
+        <input id="Email" name="Email" placeholder="naam@domein.nl" aria-describedby="emailErr" />
+        <div id="emailErr" class="error" role="alert"></div>
     </div>
     <div>
         <label for="Subject">Onderwerp</label>
         <input id="Subject" name="Subject" placeholder="Onderwerp" />
     </div>
     <div>
-        <label for="Message" aria-hidden="true">Bericht</label> 
-        <textarea id="Message" name="Message" rows="5" placeholder="Je bericht"></textarea>
-        <div id="msgErr" class="error"></div>
+        <label for="Message">Bericht</label> 
+        <textarea id="Message" name="Message" rows="5" placeholder="Je bericht" aria-describedby="msgErr"></textarea>
+        <div id="msgErr" class="error" role="alert"></div>
     </div>
-    <div id="liveStatus"></div>
+    <div id="liveStatus" role="status" aria-live="polite" aria-atomic="true"></div>
     <button type="submit" class="send-button">
         Versturen
     </button>
