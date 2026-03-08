@@ -80,3 +80,11 @@ input:focus, textarea:focus {
     position: absolute;
     left: -9999px;
 }
+
+p {
+    color: #000000;
+}
+
+.message-preview {
+    color: #000000;
+}
