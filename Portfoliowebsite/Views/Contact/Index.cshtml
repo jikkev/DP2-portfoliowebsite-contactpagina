@@ -1,4 +1,4 @@
-﻿﻿﻿﻿@{
+﻿@{
     ViewData["Title"] = "Contact";
 }
 
@@ -6,6 +6,7 @@
 
 <form id="contactForm" asp-action="Index" method="post" novalidate>
     @Html.AntiForgeryToken()
+    <input type="hidden" name="submissionToken" value="@ViewData["SubmissionToken"]" />
     <div class="hp" aria-hidden="true" tabindex="-1">
         <label for="website">Laat dit veld leeg</label>
         <input type="text" id="website" name="website" value="" tabindex="-1" />
@@ -22,7 +23,8 @@
     </div>
     <div>
         <label for="Subject">Onderwerp</label>
-        <input id="Subject" name="Subject" placeholder="Onderwerp" />
+        <input id="Subject" name="Subject" placeholder="Onderwerp" aria-describedby="subjectErr"/>
+        <div id="subjectErr" class="error" role="alert"></div>
     </div>
     <div>
         <label for="Message">Bericht</label> 
