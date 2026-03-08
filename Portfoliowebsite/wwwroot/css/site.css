@@ -78,9 +78,5 @@ input:focus, textarea:focus {
 
 #liveStatus {
     position: absolute;
-    clip-path: inset(100%);
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    overflow: hidden;
-    width: 1px;
+    left: -9999px;
 }

@@ -7,14 +7,12 @@ namespace Portfoliowebsite.Controllers
     {
 
         private readonly IEmailSender _email;
-        // Store submission tokens to prevent spam
         private static readonly Dictionary<string, DateTime> SubmissionTokens = new();
 
         public ContactController(IEmailSender email) => _email = email;
 
         public IActionResult Index()
         {
-            // Generate a unique token for this form load
             string token = Guid.NewGuid().ToString();
             SubmissionTokens[token] = DateTime.UtcNow;
             ViewData["SubmissionToken"] = token;
@@ -24,15 +22,13 @@ namespace Portfoliowebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string Name, string Email, string Subject, string Message, string submissionToken)
         {
-            // Validate submission token
             if (string.IsNullOrEmpty(submissionToken) || !SubmissionTokens.ContainsKey(submissionToken))
             {
                 ModelState.AddModelError("", "Formulier ongeldig. Laad de pagina opnieuw.");
                 ViewData["SubmissionToken"] = Guid.NewGuid().ToString();
                 return View();
             }
-
-            // Validate required fields
+            
             if (string.IsNullOrWhiteSpace(Name))
                 ModelState.AddModelError(nameof(Name), "Naam is verplicht");
             if (string.IsNullOrWhiteSpace(Email))
@@ -47,11 +43,9 @@ namespace Portfoliowebsite.Controllers
                 ViewData["SubmissionToken"] = Guid.NewGuid().ToString();
                 return View();
             }
-
-            // Remove token to prevent reuse
+            
             SubmissionTokens.Remove(submissionToken);
-
-            // Clean up old tokens (older than 10 minutes)
+            
             var cutoff = DateTime.UtcNow.AddMinutes(-10);
             var oldTokens = SubmissionTokens.Where(x => x.Value < cutoff).Select(x => x.Key).ToList();
             foreach (var oldToken in oldTokens)

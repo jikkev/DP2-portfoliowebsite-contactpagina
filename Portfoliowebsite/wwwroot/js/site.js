@@ -67,7 +67,6 @@ function setupValidation() {
     });
 
     form.addEventListener('submit', (e) => {
-        // Prevent double submission
         if (isSubmitting) {
             e.preventDefault();
             return false;
@@ -80,7 +79,7 @@ function setupValidation() {
             return false;
         }
 
-        // Validate required fields client-side
+        
         let hasErrors = false;
         
         if (!name.value || name.value.trim().length < 2) {
@@ -116,8 +115,7 @@ function setupValidation() {
             status.textContent = 'Validatiefouten aanwezig';
             return false;
         }
-
-        // Mark form as submitting and disable button
+        
         isSubmitting = true;
         const submitButton = form.querySelector('button[type="submit"]');
         submitButton.disabled = true;
